@@ -33,7 +33,7 @@ instance (PersistField (DefaultKey a), DefaultKeyId a) => PersistField (Id a) wh
   dbType p _ = dbType p (undefined :: DefaultKey a)
 
 instance (PrimitivePersistField (DefaultKey a), DefaultKeyId a) => PrimitivePersistField (Id a) where
-  toPrimitivePersistValue p = toPrimitivePersistValue p . fromId
-  fromPrimitivePersistValue p = toId . fromPrimitivePersistValue p
+  toPrimitivePersistValue = toPrimitivePersistValue . fromId
+  fromPrimitivePersistValue = toId . fromPrimitivePersistValue 
 
 type IdDataIs a b = IdData a ~ b
